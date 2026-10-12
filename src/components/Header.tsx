@@ -2,12 +2,8 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/pizza-logo.svg';
 import Search from './Search';
 
-type HeaderProps = {
-  searchValue: string;
-  setSearchValue: (value: string) => void;
-};
-
-function Header({ searchValue, setSearchValue }: HeaderProps) {
+function Header(searchValue, setSearchValue) {
+  console.log('Header changed');
   return (
     <div className="header">
       <div className="container">
