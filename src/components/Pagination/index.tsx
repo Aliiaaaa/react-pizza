@@ -1,31 +1,19 @@
-import ReactPaginateImport from 'react-paginate';
 import styles from './Pagination.module.scss';
+import ReactPaginateImport from 'react-paginate';
 
-const ReactPaginate: typeof ReactPaginateImport =
-  (ReactPaginateImport as unknown as { default?: typeof ReactPaginateImport }).default ??
-  ReactPaginateImport;
+const ReactPaginate = (ReactPaginateImport as any).default ?? ReactPaginateImport;
 
-type PaginationProps = {
-  currentPage: number;
-  pageCount: number;
-  onChangePage: (page: number) => void;
-};
-
-export const Pagination = ({ currentPage, pageCount, onChangePage }: PaginationProps) => {
-  return (
-    <ReactPaginate
-      className={styles.root}
-      activeClassName={styles.selected}
-      breakLabel="..."
-      previousLabel="<"
-      nextLabel=">"
-      onPageChange={(e) => onChangePage(e.selected + 1)}
-      pageRangeDisplayed={4}
-      pageCount={pageCount}
-      forcePage={currentPage - 1}
-      renderOnZeroPageCount={null}
-    />
-  );
-};
+const Pagination = ({ currentPage, onChangePage }) => (
+  <ReactPaginate
+    className={styles.root}
+    breakLabel="..."
+    nextLabel=">"
+    previousLabel="<"
+    onPageChange={(event) => onChangePage(event.selected + 1)}
+    pageRangeDisplayed={4}
+    pageCount={3}
+    forcePage={currentPage - 1}
+  />
+);
 
 export default Pagination;
